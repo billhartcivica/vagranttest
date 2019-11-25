@@ -1,0 +1,31 @@
+---
+# tasks file for provision/roles/proxy
+
+  - name: Update apt cache
+    apt:
+       update_cache: yes
+
+  - name: Install nginx
+    apt:
+      name: "{{ proxy.package }}"
+      state: present
+
+  - name: Copy Load-balancer config
+    template:
+      src: "{{ role_path }}/files/load-balancer.conf"
+      dest: "/etc/nginx/conf.d/load-balancer.conf"
+      remote_src: yes
+
+  - name: Remove default config
+    file:
+      state: absent
+      path: "/etc/nginx/sites-enabled/default"
+
+  - name: Start NGiNX
+    service:
+      name: "{{ proxy.service }}"
+      state: started
+      enabled: yes
+
+
+

@@ -1,0 +1,25 @@
+---
+# tasks file for provision/roles/webserver
+
+  - name: Update apt cache
+    apt:
+       update_cache: yes
+
+  - name: Install nginx
+    apt:
+      name: "{{ webserver.package }}"
+      state: present
+
+  - name: Insert Index Page
+    template:
+      src: "{{ role_path }}/files/index.html"
+      dest: "/var/www/html/index.html"
+
+  - name: Start NGiNX
+    service:
+      name: "{{ webserver.service }}"
+      state: started
+
+
+
+

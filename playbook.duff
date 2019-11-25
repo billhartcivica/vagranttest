@@ -1,0 +1,12 @@
+---
+- hosts: all
+  name: Simple nginx example Vagrant Ansible Local
+  become: yes
+
+  tasks:
+
+  - name: Insert Index Page
+    template:
+      src: index.html
+      dest: /usr/share/nginx/html/index.html
+

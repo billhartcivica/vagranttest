@@ -1,0 +1,9 @@
+---
+# defaults file for provision/roles/webserver
+webserver:
+  docroot: /usr/share/nginx/html
+  package: nginx
+  service: nginx
+
+
+

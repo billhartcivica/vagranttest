@@ -1,0 +1,8 @@
+[proxy]
+10.0.0.10 ansible_connection=local
+
+[webserver1]
+10.0.0.11 ansible_connection=local
+
+[webserver2]
+10.0.0.12 ansible_connection=local
