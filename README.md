@@ -1,7 +1,7 @@
-Demonstration of Vagrant and Ansible-Built HA Web Servers with Proxy
+# Demonstration of Vagrant and Ansible-Built HA Web Servers with Proxy
 ====================================================================
 
-Overview:
+## Overview:
 
 This repository contains the files required to automatically build a two-server HA cluster of NGinx
 backend servers with an NGinx front-end proxy. The aim is to provision the proxy to act as the front-
@@ -9,7 +9,7 @@ end gateway to both backend web servers, ensuring that if one fails the other wi
 pages. Each web server is configured identically, using Ansible to configure/provision all host options
 while Vagrant is the engine which handles deployment.
 
-Technical Detail:
+## Technical Detail:
 
 The repository is made up of the following files:
 
@@ -18,14 +18,37 @@ The repository is made up of the following files:
 - Ansible playbooks - one for the proxy and one for any number of backend web servers (default: 2)
 - Playbook roles subfolders (located under provision/roles)
 
-Prerequisites:
+## Prerequisites:
 
 Before downloading this repository, ensure your machine has the following installed:
 
-- Oracle Virtualbox - link
-- Vagrant - link
+- Oracle Virtualbox - https://www.virtualbox.org/wiki/Downloads
+- Vagrant - https://www.vagrantup.com/downloads.html
 
 For performance, please ensure your machine is sufficiently powerful and has enough memory and disk 
 capacity to run three virtual servers.
+
+## Installation and Running
+
+To install this example, clone this repository to your own Linux machine:
+
+``` 
+git clone https://github.com/billhartcivica/vagranttest.git
+```
+
+Navigate to the newly downloaded folder:
+```
+cd vagranttest
+```
+
+Assuming you have met the technical requirements (installed Vagrant and Oracle Virtualbox), all that is 
+needed is to run 'vagrant up'.
+
+After a period of about 5 to 6 minutes, the server cluster should be up and running. Open your browser
+and enter 'http://10.0.0.10' in the address bar and press <enter>. You should see the following:
+
+Picture..
+ 
+
 
  
