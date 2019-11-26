@@ -47,8 +47,15 @@ needed is to run 'vagrant up'.
 After a period of about 5 to 6 minutes, the server cluster should be up and running. Open your browser
 and enter 'http://10.0.0.10' in the address bar and press <enter>. You should see the following:
 
-Picture..
+![alt text](./hello.png)
  
+## Further Technical Details:
 
+The process of creating the cluster is as follows:
+
+- Vagrant initiates the build, using the directives found in the Vagrantfile in the root of this repository.
+- The first machine, the web proxy, is created and Ansible installed locally on that host.
+- Ansible is started and the playbook for the proxy is run. This calls on the 'role' for the proxy (proxy)
+  which contains the tasks as well as the configuration files required to be copied to the host.
 
  

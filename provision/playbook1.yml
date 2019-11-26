@@ -1,7 +1,0 @@
----
-- hosts: webserver1
-  name: Simple nginx example Vagrant Ansible Local
-  become: yes
-  roles:
-    - webserver
-

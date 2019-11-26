@@ -27,5 +27,8 @@
       state: started
       enabled: yes
 
-
+  - name: Reload service NGiNX
+    service:
+      name: "{{ proxy.service }}"
+      state: restarted
 

@@ -10,16 +10,32 @@
       name: "{{ webserver.package }}"
       state: present
 
+  - name: Install php components
+    apt:
+      pkg:
+      - php-common
+      - php-cli
+      - php-fpm
+
+  - name: Copy default config
+    template:
+      src: "{{ role_path }}/files/default"
+      dest: "/etc/nginx/sites-available/default"
+      remote_src: yes
+  
   - name: Insert Index Page
     template:
-      src: "{{ role_path }}/files/index.html"
-      dest: "/var/www/html/index.html"
+      src: "{{ role_path }}/files/index.php"
+      dest: "/usr/share/nginx/html/index.php"
 
   - name: Start NGiNX
     service:
       name: "{{ webserver.service }}"
       state: started
 
-
+  - name: Reload service NGiNX
+    service:
+      name: "{{ webserver.service }}"
+      state: restarted
 
 
