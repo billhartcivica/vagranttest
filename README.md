@@ -1,4 +1,5 @@
 Demonstration of Vagrant and Ansible-Built HA Web Servers with Proxy
+====================================================================
 
 Overview:
 
@@ -22,8 +23,9 @@ Prerequisites:
 Before downloading this repository, ensure your machine has the following installed:
 
 - Oracle Virtualbox - link
-- Ansible - link
+- Vagrant - link
 
 For performance, please ensure your machine is sufficiently powerful and has enough memory and disk 
 capacity to run three virtual servers.
+
  
