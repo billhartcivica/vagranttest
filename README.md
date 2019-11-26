@@ -68,4 +68,16 @@ The process of creating the cluster is as follows:
 - Each iteration of the webserver provisioning calls the same Ansible tasks in the corresponding role,
   amending the default configuration,  installing PHP and copying the index.php file to the /usr/share/nginx/html
   folder. 
+
+## Things To Do
+
+Given further time, I would prefer to automate the configuration of the load-balancer.conf file for the proxy
+server. This would make the adding of extra web hosts more dynamic and seamless.
+
+Further improvements might be to deploy Nginx within a Docker container, running Docker on each web host and
+on the proxy, configuring each using mapped configs to their respective internal configuration folders.
+
+Taking containerisation further, another consideration might be to run the group as a Kubernetes cluster, with 
+proxy and web servers presented as orchestrated containers. This would allow for automatic scaling of both
+backend web servers as well as the proxy, allowing the system to react more dynamically to web requests.
  
