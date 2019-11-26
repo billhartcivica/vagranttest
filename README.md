@@ -57,5 +57,15 @@ The process of creating the cluster is as follows:
 - The first machine, the web proxy, is created and Ansible installed locally on that host.
 - Ansible is started and the playbook for the proxy is run. This calls on the 'role' for the proxy (proxy)
   which contains the tasks as well as the configuration files required to be copied to the host.
-
+- The role's tasks (located in provison/roles/proxy/tasks/main.yml) define what changes are made to the
+  host to configure it as the web proxy for the other two servers.
+- Once completed, the Vagrantfile loops through a routine to set up the two backend web servers. This is set
+  by the variable SERVER_COUNT (default: 2). This can be amended to create further backend web servers,
+  limited only by the resources available on your own computer. NOTE: If you amend the number of servers
+  then you will have to add these host IPs (just add one to the existing addresses - ie: 10.0.0.13 for the
+  third backend server) to the load-balancer.conf file in the provision/roles/proxy/files folder. You will
+  see the existing servers mentioned there by IP in the 'upstream backend' section.
+- Each iteration of the webserver provisioning calls the same Ansible tasks in the corresponding role,
+  amending the default configuration,  installing PHP and copying the index.php file to the /usr/share/nginx/html
+  folder. 
  
