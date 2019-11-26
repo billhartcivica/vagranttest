@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
       subconfig.vm.hostname = "host#{i}"
       subconfig.vm.network :private_network, ip: "10.0.0.#{i + 10}"
       subconfig.vm.provision :ansible_local do |ansible|
-        ansible.playbook = "provision/playbook#{i}.yml"
+        ansible.playbook = "provision/playbook-webserver.yml"
         ansible.inventory_path = 'inventory'
         ansible.limit = 'all'
       end
