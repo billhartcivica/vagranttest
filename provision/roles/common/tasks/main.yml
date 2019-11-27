@@ -1,0 +1,24 @@
+---
+# tasks file for common
+
+- name: Update apt cache
+  apt:
+     update_cache: yes
+
+- name: Install nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Start NGiNX
+  service:
+    name: nginx
+    state: started
+
+- name: Amend the sudoers file to allow admin group to sudo without password
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%admin ALL='
+    line: '%admin ALL=(ALL) NOPASSWD: ALL'
+    validate: /usr/sbin/visudo -cf %s

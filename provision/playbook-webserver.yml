@@ -3,5 +3,5 @@
   name: Simple nginx example Vagrant Ansible Local
   become: yes
   roles:
+    - common
     - webserver
-

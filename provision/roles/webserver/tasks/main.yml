@@ -1,15 +1,6 @@
 ---
 # tasks file for provision/roles/webserver
 
-  - name: Update apt cache
-    apt:
-       update_cache: yes
-
-  - name: Install nginx
-    apt:
-      name: "{{ webserver.package }}"
-      state: present
-
   - name: Install php components
     apt:
       pkg:
@@ -27,11 +18,6 @@
     template:
       src: "{{ role_path }}/files/index.php"
       dest: "/usr/share/nginx/html/index.php"
-
-  - name: Start NGiNX
-    service:
-      name: "{{ webserver.service }}"
-      state: started
 
   - name: Reload service NGiNX
     service:
