@@ -69,6 +69,57 @@ The process of creating the cluster is as follows:
   amending the default configuration,  installing PHP and copying the index.php file to the /usr/share/nginx/html
   folder. 
 
+## Folder Structure
+
+```
+├── hello.png                           # Image file for README.md
+├── inventory                           # Ansible inventory of target hosts
+├── provision                           # Top-level Ansible provision folder
+│   ├── playbook-webserver.yml          # Ansible playbook for backend web hosts
+│   ├── playbook.yml                    # Ansible playbook for frontend proxy
+│   └── roles                           # Ansible roles
+│       ├── proxy                       # Proxy role folder
+│       │   ├── defaults                # Default settings for provisioning
+│       │   │   └── main.yml            # Config file for default settings
+│       │   ├── files                   # Files to be uploaded to target
+│       │   │   └── load-balancer.conf  # Load-balancer config for proxy
+│       │   ├── handlers
+│       │   │   └── main.yml
+│       │   ├── meta
+│       │   │   └── main.yml
+│       │   ├── README.md               # README file for proxy role
+│       │   ├── tasks                   # Tasks folder for proxy
+│       │   │   └── main.yml            # Tasks file for proxy provisioning
+│       │   ├── templates
+│       │   ├── tests
+│       │   │   ├── inventory
+│       │   │   └── test.yml
+│       │   └── vars
+│       │       └── main.yml
+│       └── webserver
+│           ├── defaults                # Default settings for provisioning web server
+│           │   └── main.yml            # Config file for default settings
+│           ├── files                   # Files to be copied to the target host(s)
+│           │   ├── default             # Default Nginx config file
+│           │   ├── index.html          # Default web page
+│           │   └── index.php           # Default web page for PHP handling (default)
+│           ├── handlers
+│           │   └── main.yml
+│           ├── meta
+│           │   └── main.yml
+│           ├── README.md               # README file for web server role
+│           ├── tasks                   # Tasks folder for web servers
+│           │   └── main.yml            # Tasks file for web servers
+│           ├── templates
+│           ├── tests
+│           │   ├── inventory
+│           │   └── test.yml
+│           └── vars
+│               └── main.yml
+├── README.md                           # README file for the repository
+└── Vagrantfile                         # Config file for Vagrant deployment
+```
+
 ## Things To Do
 
 Given further time, I would prefer to automate the configuration of the load-balancer.conf file for the proxy
