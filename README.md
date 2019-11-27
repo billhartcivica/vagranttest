@@ -78,6 +78,23 @@ The process of creating the cluster is as follows:
 │   ├── playbook-webserver.yml          # Ansible playbook for backend web hosts
 │   ├── playbook.yml                    # Ansible playbook for frontend proxy
 │   └── roles                           # Ansible roles
+│       ├── common                      # Common role folder (common to proxy and web)
+│       │   ├── defaults                # Default settings for provisioning
+│       │   │   └── main.yml            # Config file for default settings
+│       │   ├── files                   # Files to be uploaded to target (empty)
+│       │   ├── handlers
+│       │   │   └── main.yml
+│       │   ├── meta
+│       │   │   └── main.yml
+│       │   ├── README.md               # README file for the common role
+│       │   ├── tasks                   # Tasks common to both web and proxy
+│       │   │   └── main.yml            # Tasks file for common tasks
+│       │   ├── templates
+│       │   ├── tests
+│       │   │   ├── inventory
+│       │   │   └── test.yml
+│       │   └── vars
+│       │       └── main.yml
 │       ├── proxy                       # Proxy role folder
 │       │   ├── defaults                # Default settings for provisioning
 │       │   │   └── main.yml            # Config file for default settings
