@@ -41,6 +41,7 @@ Windows 10, the following prerequisites **must** be met:
 - Hyper-V must be either uninstalled or disabled.
 - If you have installed Docker for Windows, this must also be disabled/uninstalled.
 - Oracle Virtualbox must be the only hypervisor running on the system.
+- Note: This virtual machine will **not** run on Hyper-V!
 
 ## Prerequisites:
 
