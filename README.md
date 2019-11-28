@@ -27,6 +27,21 @@ playbook for each machine type. The results of the default configuration are:
 - One backend web server running Nginx with an IP address of 10.0.0.11.
 - A second backend web server, also running Nginx with an IP address of 10.0.0.12.
 
+## Deployment Tests
+This deployment has been tested on both Linux and Windows 10 hosts. The Linux installation was very simple:
+
+- Install Virtualbox
+- Install Vagrant
+- Download/install the code respository
+- Run 'vagrant up'
+
+The Windows deployment was somewhat more involved, depending on your setup. To run the deployment on
+Windows 10, the following prerequisites **must** be met:
+
+- Hyper-V must be either uninstalled or disabled.
+- If you have installed Docker for Windows, this must also be disabled/uninstalled.
+- Oracle Virtualbox must be the only hypervisor running on the system.
+
 ## Prerequisites:
 
 Before downloading this repository, ensure your machine has the following installed:
