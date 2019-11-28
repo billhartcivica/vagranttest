@@ -22,8 +22,8 @@ The Vagrantfile defines the build instructions for the base virtual machines. An
 machine's configuration individually by loading Ansible locally on each box and running the corresponding
 playbook for each machine type. The results of the default configuration are:
 
-- One proxy host with an IP address of 10.0.0.10. This machine forwards page requests to the two backend
-  machines.
+- One proxy host running Nginx with an IP address of 10.0.0.10. This machine forwards page requests to 
+  the two backend machines.
 - One backend web server running Nginx with an IP address of 10.0.0.11.
 - A second backend web server, also running Nginx with an IP address of 10.0.0.12.
 
