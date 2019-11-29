@@ -8,5 +8,5 @@
 10.0.0.12 ansible_connection=local
 
 
-[localhost]
+[webserver]
 127.0.0.1 ansible_connection=local

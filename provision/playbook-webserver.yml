@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: webserver
   name: Simple nginx example Vagrant Ansible Local
   become: yes
   roles:
