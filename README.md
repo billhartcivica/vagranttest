@@ -22,10 +22,10 @@ The Vagrantfile defines the build instructions for the base virtual machines. An
 machine's configuration individually by loading Ansible locally on each box and running the corresponding
 playbook for each machine type. The results of the default configuration are:
 
-- One proxy host running Nginx with an IP address of 10.0.0.10. This machine forwards page requests to 
-  the two backend machines.
-- One backend web server running Nginx with an IP address of 10.0.0.11.
-- A second backend web server, also running Nginx with an IP address of 10.0.0.12.
+- One proxy host running Nginx with an IP address of 10.0.0.10 (proxy). This machine forwards page requests
+  to the two backend machines.
+- One backend web server running Nginx with an IP address of 10.0.0.11 (host1).
+- A second backend web server, also running Nginx with an IP address of 10.0.0.12 (host2).
 
 ## Deployment Tests
 This deployment has been tested on both Linux and Windows 10 hosts. The Linux installation was very simple:
@@ -43,12 +43,18 @@ Windows 10, the following prerequisites **must** be met:
 - Oracle Virtualbox must be the only hypervisor running on the system.
 - Note: This virtual machine will **not** run on Hyper-V!
 
+Unfortunately, I was unable to source a Macintosh host to test this on an OSX environment. However, it is
+entirely likely that as long as the prerequiresites below are met, this deployment should work correctly on 
+a Mac.
+
 ## Prerequisites:
 
 Before downloading this repository, ensure your machine has the following installed:
 
 - Oracle Virtualbox - https://www.virtualbox.org/wiki/Downloads
 - Vagrant - https://www.vagrantup.com/downloads.html
+
+Follow the installation instructions on each site for your particular environment.
 
 For performance, please ensure your machine is sufficiently powerful and has enough memory and disk 
 capacity to run three virtual servers.
