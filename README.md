@@ -18,6 +18,31 @@ The repository is made up of the following files:
 - Ansible playbooks - one for the proxy and one for any number of backend web servers (default: 2)
 - Playbook roles subfolders (located under provision/roles)
 
+The Vagrantfile defines the build instructions for the base virtual machines. Ansible deploys each
+machine's configuration individually by loading Ansible locally on each box and running the corresponding
+playbook for each machine type. The results of the default configuration are:
+
+- One proxy host running Nginx with an IP address of 10.0.0.10. This machine forwards page requests to 
+  the two backend machines.
+- One backend web server running Nginx with an IP address of 10.0.0.11.
+- A second backend web server, also running Nginx with an IP address of 10.0.0.12.
+
+## Deployment Tests
+This deployment has been tested on both Linux and Windows 10 hosts. The Linux installation was very simple:
+
+- Install Virtualbox
+- Install Vagrant
+- Download/install the code respository
+- Run 'vagrant up'
+
+The Windows deployment was somewhat more involved, depending on your setup. To run the deployment on
+Windows 10, the following prerequisites **must** be met:
+
+- Hyper-V must be either uninstalled or disabled.
+- If you have installed Docker for Windows, this must also be disabled/uninstalled.
+- Oracle Virtualbox must be the only hypervisor running on the system.
+- Note: This virtual machine will **not** run on Hyper-V!
+
 ## Prerequisites:
 
 Before downloading this repository, ensure your machine has the following installed:
@@ -60,10 +85,10 @@ The process of creating the cluster is as follows:
 - The role's tasks (located in provison/roles/proxy/tasks/main.yml) define what changes are made to the
   host to configure it as the web proxy for the other two servers.
 - Once completed, the Vagrantfile loops through a routine to set up the two backend web servers. This is set
-  by the variable SERVER_COUNT (default: 2). This can be amended to create further backend web servers,
-  limited only by the resources available on your own computer. NOTE: If you amend the number of servers
-  then you will have to add these host IPs (just add one to the existing addresses - ie: 10.0.0.13 for the
-  third backend server) to the load-balancer.conf file in the provision/roles/proxy/files folder. You will
+  by the variable SERVER_COUNT (default: 2) in the Vagrantfile. This can be amended to create further backend
+  web servers, limited only by the resources available on your own computer. NOTE: If you amend the number of
+  servers then you will have to add these host IPs (just add one to the existing addresses - ie: 10.0.0.13 for
+  the third backend server) to the load-balancer.conf file in the provision/roles/proxy/files folder. You will
   see the existing servers mentioned there by IP in the 'upstream backend' section.
 - Each iteration of the webserver provisioning calls the same Ansible tasks in the corresponding role,
   amending the default configuration,  installing PHP and copying the index.php file to the /usr/share/nginx/html
