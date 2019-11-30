@@ -1,0 +1,13 @@
+---
+- hosts: proxy
+  remote_user: root
+  roles:
+    - /vagrant/provision/roles/proxy
+
+  tasks:
+  - name: Check that a page returns a status 200 and fail if Hello World is not present
+    uri:
+      url: http://10.0.0.10
+      return_content: yes
+    register: this
+    failed_when: "'Hello World' not in this.content"

@@ -45,7 +45,12 @@ Windows 10, the following prerequisites **must** be met:
 
 Unfortunately, I was unable to source a Macintosh host to test this on an OSX environment. However, it is
 entirely likely that as long as the prerequiresites below are met, this deployment should work correctly on 
-a Mac.
+a Mac. If the wrapper script (start.sh) is used, then Mac users will need to install the 'envsubst' utility
+on their system. This can be done by running the following from a command prompt on your Macintosh:
+```
+brew install gettext
+brew link --force gettext 
+```
 
 ## Prerequisites:
 

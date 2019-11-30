@@ -1,2 +1,2 @@
-[proxy]
-10.0.0.10 ansible_connection=local
+[localhost]
+127.0.0.1 ansible_connection=local
