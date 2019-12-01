@@ -56,7 +56,7 @@ Before downloading this repository, ensure your machine has the following instal
 - Oracle Virtualbox - https://www.virtualbox.org/wiki/Downloads
 - Vagrant - https://www.vagrantup.com/downloads.html
 
-Follow the installation instructions on each site for your particular environment.
+Follow the installation instructions on each site for your particular environment (Windows, Mac or Linux).
 
 For performance, please ensure your machine is sufficiently powerful and has enough memory and disk
 capacity to run three virtual servers.
@@ -94,12 +94,14 @@ The process of creating the cluster is as follows:
   the third backend server) to the load-balancer.conf file in the provision/roles/proxy/files folder. You will
   see the existing servers mentioned there by IP in the 'upstream backend' section.
 - Each iteration of the webserver provisioning calls the same Ansible tasks in the corresponding role, defined
-  in the provision/roles/webserver subfolders, including amending the default configuration,  installing PHP
-  and copying the index.php file to the /usr/share/nginx/html folder.
+  in the provision/roles/webserver/tasks/main.yml file, including amending the default configuration,  installing
+  PHP and copying the index.php file to the /usr/share/nginx/html folder.
 - After each host is installed, local tests are run to check for the presence of the nginx service, the default
-  listening port (80) and whether the expected 'Hello World' page is displayed.
+  listening port (80) and whether the expected 'Hello World' page is displayed. As each server is running Nginx
+  and follows the same set of general rules, the tests defined are common to all. Because of this, the tests
+  are defined in the provision/roles/common/tests/test.yml file.
 - Next, the web proxy, is created and Ansible installed locally on that host as before.
-- Ansible is started and the playbook for the proxy is run. This calls on the 'role' for the proxy hel in the
+- Ansible is started and the playbook for the proxy is run. This calls on the 'role' for the proxy held in the
   provision/roles/proxy folder which contains the tasks, the tests and the configuration files required to be
   copied to the host.
 - The role's tasks (located in provison/roles/proxy/tasks/main.yml) define what changes are made to the
@@ -172,6 +174,15 @@ The process of creating the cluster is as follows:
 ├── README.md                           # README file for the repository
 └── Vagrantfile                         # Config file for Vagrant deployment
 ```
+
+## Additional Application(s)
+
+As part of the exercise, I have included a very simple weather app, written in PHP and deployed on both web
+servers. This can be accessed by entering the following in your browser navigation bar:
+```
+http://10.0.0.10/weather.php
+```
+This displays some current weather conditions in the London area.
 
 ## Things To Do
 
