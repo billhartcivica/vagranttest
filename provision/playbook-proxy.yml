@@ -1,7 +1,8 @@
 ---
 - hosts: proxy
+  name: Nginx load-balancing proxy installation Vagrant Ansible Local
   gather_facts: yes
-  become: true
+  become: yes
   roles:
     - common
     - proxy

@@ -1,6 +1,7 @@
 ---
 - hosts: webserver
-  name: Simple nginx example Vagrant Ansible Local
+  name: Nginx webserver installation Vagrant Ansible Local
+  gather_facts: yes
   become: yes
   roles:
     - common

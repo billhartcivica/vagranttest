@@ -1,7 +1,6 @@
 ---
 - hosts: localhost
   remote_user: vagrant
-  become: yes
   tasks:
   - name: Check if Nginx is running
     command: systemctl status nginx
@@ -9,7 +8,7 @@
     changed_when: false
     register: service_nginx_status
 
-  - name: Report status of Nginx
+  - name: Report status of Nginx if down!
     fail:
       msg: |
         Service nginx is not running.
@@ -25,7 +24,7 @@
     register: this
     failed_when: "'Hello World' not in this.content"
 
-  - name: Check listening port is open
+  - name: Verify listening port is open
     wait_for:
       host: "{{ inventory_hostname }}"
       port: 80
