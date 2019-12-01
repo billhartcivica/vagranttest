@@ -109,8 +109,9 @@ The process of creating the cluster is as follows:
   copied to the host.
 - The role's tasks (located in provison/roles/proxy/tasks/main.yml) define what changes are made to the
   host to configure it as the web proxy for the other two servers.
-- Note: Tasks which are commong to both the load balancer and the two web servers (installing nginx and starting
-  the service) are defined in the provision/roles/common/tasks/main.yml file.
+- Note: Tasks which are common to both the load balancer and the two web servers (installing nginx, updating
+  the apt cache, amending the sudoers file and starting the service) are defined in the 
+  provision/roles/common/tasks/main.yml file. 
 
 ## Folder Structure
 
