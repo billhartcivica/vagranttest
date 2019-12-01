@@ -51,7 +51,7 @@ a Mac.
 
 ## Prerequisites:
 
-Before downloading this repository, ensure your machine has the following installed:
+**Before downloading this repository, ensure your machine has the following installed:**
 
 - Oracle Virtualbox - https://www.virtualbox.org/wiki/Downloads
 - Vagrant - https://www.vagrantup.com/downloads.html
@@ -75,12 +75,15 @@ cd vagranttest
 ```
 
 Assuming you have met the technical requirements (installed Vagrant and Oracle Virtualbox), all that is
-needed is to run 'vagrant up'.
+needed is to type the following and press Enter:
+```
+vagrant up
+```
 
 After a period of about 5 to 6 minutes, the server cluster should be up and running. Open your browser
 and enter 'http://10.0.0.10' in the address bar and press <enter>. You should see the following:
 
-![alt text](./hello.png)
+![webpage](./hello.png)
 
 ## Further Technical Details:
 
@@ -106,6 +109,8 @@ The process of creating the cluster is as follows:
   copied to the host.
 - The role's tasks (located in provison/roles/proxy/tasks/main.yml) define what changes are made to the
   host to configure it as the web proxy for the other two servers.
+- Note: Tasks which are commong to both the load balancer and the two web servers (installing nginx and starting
+  the service) are defined in the provision/roles/common/tasks/main.yml file.
 
 ## Folder Structure
 
@@ -195,3 +200,7 @@ on the proxy, configuring each using mapped configs to their respective internal
 Taking containerisation further, another consideration might be to run the group as a Kubernetes cluster, with
 proxy and web servers presented as orchestrated containers. This would allow for automatic scaling of both
 backend web servers as well as the proxy, allowing the system to react more dynamically to web requests.
+
+## Time Taken to complete
+
+Overall, a total of roughly 8 and a half hours were spent over a period of days, taking an hour or so at a time.
