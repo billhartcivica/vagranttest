@@ -44,13 +44,8 @@ Windows 10, the following prerequisites **must** be met:
 - Note: This virtual machine will **not** run on Hyper-V!
 
 Unfortunately, I was unable to source a Macintosh host to test this on an OSX environment. However, it is
-entirely likely that as long as the prerequiresites below are met, this deployment should work correctly on 
-a Mac. If the wrapper script (start.sh) is used, then Mac users will need to install the 'envsubst' utility
-on their system. This can be done by running the following from a command prompt on your Macintosh:
-```
-brew install gettext
-brew link --force gettext 
-```
+entirely likely that as long as the prerequiresites below are met, this deployment should work correctly on
+a Mac.
 
 ## Prerequisites:
 
@@ -61,14 +56,14 @@ Before downloading this repository, ensure your machine has the following instal
 
 Follow the installation instructions on each site for your particular environment.
 
-For performance, please ensure your machine is sufficiently powerful and has enough memory and disk 
+For performance, please ensure your machine is sufficiently powerful and has enough memory and disk
 capacity to run three virtual servers.
 
 ## Installation and Running
 
 To install this example, clone this repository to your own Linux machine:
 
-``` 
+```
 git clone https://github.com/billhartcivica/vagranttest.git
 ```
 
@@ -77,33 +72,36 @@ Navigate to the newly downloaded folder:
 cd vagranttest
 ```
 
-Assuming you have met the technical requirements (installed Vagrant and Oracle Virtualbox), all that is 
+Assuming you have met the technical requirements (installed Vagrant and Oracle Virtualbox), all that is
 needed is to run 'vagrant up'.
 
 After a period of about 5 to 6 minutes, the server cluster should be up and running. Open your browser
 and enter 'http://10.0.0.10' in the address bar and press <enter>. You should see the following:
 
 ![alt text](./hello.png)
- 
+
 ## Further Technical Details:
 
 The process of creating the cluster is as follows:
 
 - Vagrant initiates the build, using the directives found in the Vagrantfile in the root of this repository.
-- The first machine, the web proxy, is created and Ansible installed locally on that host.
-- Ansible is started and the playbook for the proxy is run. This calls on the 'role' for the proxy (proxy)
-  which contains the tasks as well as the configuration files required to be copied to the host.
-- The role's tasks (located in provison/roles/proxy/tasks/main.yml) define what changes are made to the
-  host to configure it as the web proxy for the other two servers.
-- Once completed, the Vagrantfile loops through a routine to set up the two backend web servers. This is set
+- The Vagrantfile loops through a routine to set up the two backend web servers - host1 and host2. This is set
   by the variable SERVER_COUNT (default: 2) in the Vagrantfile. This can be amended to create further backend
   web servers, limited only by the resources available on your own computer. NOTE: If you amend the number of
   servers then you will have to add these host IPs (just add one to the existing addresses - ie: 10.0.0.13 for
   the third backend server) to the load-balancer.conf file in the provision/roles/proxy/files folder. You will
   see the existing servers mentioned there by IP in the 'upstream backend' section.
-- Each iteration of the webserver provisioning calls the same Ansible tasks in the corresponding role,
-  amending the default configuration,  installing PHP and copying the index.php file to the /usr/share/nginx/html
-  folder. 
+- Each iteration of the webserver provisioning calls the same Ansible tasks in the corresponding role, defined
+  in the provision/roles/webserver subfolders, including amending the default configuration,  installing PHP
+  and copying the index.php file to the /usr/share/nginx/html folder.
+- After each host is installed, local tests are run to check for the presence of the nginx service, the default
+  listening port (80) and whether the expected 'Hello World' page is displayed.
+- Next, the web proxy, is created and Ansible installed locally on that host as before.
+- Ansible is started and the playbook for the proxy is run. This calls on the 'role' for the proxy hel in the
+  provision/roles/proxy folder which contains the tasks, the tests and the configuration files required to be
+  copied to the host.
+- The role's tasks (located in provison/roles/proxy/tasks/main.yml) define what changes are made to the
+  host to configure it as the web proxy for the other two servers.
 
 ## Folder Structure
 
@@ -126,9 +124,9 @@ The process of creating the cluster is as follows:
 │       │   ├── tasks                   # Tasks common to both web and proxy
 │       │   │   └── main.yml            # Tasks file for common tasks
 │       │   ├── templates
-│       │   ├── tests
-│       │   │   ├── inventory
-│       │   │   └── test.yml
+│       │   ├── tests                   # Post-installation tests folder
+│       │   │   ├── inventory           # Inventory file for tests
+│       │   │   └── test.yml            # Tests defined for all hosts
 │       │   └── vars
 │       │       └── main.yml
 │       ├── proxy                       # Proxy role folder
@@ -181,7 +179,6 @@ server. This would make the adding of extra web hosts more dynamic and seamless.
 Further improvements might be to deploy Nginx within a Docker container, running Docker on each web host and
 on the proxy, configuring each using mapped configs to their respective internal configuration folders.
 
-Taking containerisation further, another consideration might be to run the group as a Kubernetes cluster, with 
+Taking containerisation further, another consideration might be to run the group as a Kubernetes cluster, with
 proxy and web servers presented as orchestrated containers. This would allow for automatic scaling of both
 backend web servers as well as the proxy, allowing the system to react more dynamically to web requests.
- 
