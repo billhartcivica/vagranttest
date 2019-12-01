@@ -9,6 +9,8 @@ end gateway to both backend web servers, ensuring that if one fails the other wi
 pages. Each web server is configured identically, using Ansible to configure/provision all host options
 while Vagrant is the engine which handles deployment.
 
+![servers](./servers.png)
+
 ## Technical Detail:
 
 The repository is made up of the following files:

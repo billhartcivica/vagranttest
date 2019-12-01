@@ -19,6 +19,11 @@
       src: "{{ role_path }}/files/index.php"
       dest: "/usr/share/nginx/html/index.php"
 
+  - name: Insert Weather app Page
+    template:
+      src: "{{ role_path }}/files/weather.php"
+      dest: "/usr/share/nginx/html/weather.php"
+
   - name: Reload service NGiNX
     service:
       name: "{{ webserver.service }}"
