@@ -193,7 +193,8 @@ This displays some current weather conditions in the London area.
 ## Things To Do
 
 Given further time, I would prefer to automate the configuration of the load-balancer.conf file for the proxy
-server. This would make the adding of extra web hosts more dynamic and seamless.
+server, auto-populating the IP addresses for each backend web server. This would make the adding of extra web
+hosts more dynamic and seamless.
 
 Further improvements might be to deploy Nginx within a Docker container, running Docker on each web host and
 on the proxy, configuring each using mapped configs to their respective internal configuration folders.
