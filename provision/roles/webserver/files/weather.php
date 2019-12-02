@@ -9,7 +9,7 @@ $wind = $jsondata->wind->speed;
 $humidity = $jsondata->main->humidity;
 $desc = $jsondata->weather[0]->description;
 $maind = $jsondata->weather[0]->main;
-echo "Current London Weather...<br>";
+echo "<b>Current London Weather...</b><br>";
 echo "Temp: $temp<br>";
 echo "Pressure: $pressure<br>";
 echo "Wind: $wind<br>";
