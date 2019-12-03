@@ -85,6 +85,9 @@ and enter 'http://10.0.0.10' in the address bar and press <enter>. You should se
 
 ![webpage](./hello.png)
 
+NOTE: If you want to create more than the default two backend web servers, you can edit the 'Vagrantfile'
+in this repository and amend the SERVER_COUNT value to whatever number of web servers you need.
+
 ## Further Technical Details:
 
 The process of creating the cluster is as follows:
@@ -92,10 +95,8 @@ The process of creating the cluster is as follows:
 - Vagrant initiates the build, using the directives found in the Vagrantfile in the root of this repository.
 - The Vagrantfile loops through a routine to set up the two backend web servers - host1 and host2. This is set
   by the variable SERVER_COUNT (default: 2) in the Vagrantfile. This can be amended to create further backend
-  web servers, limited only by the resources available on your own computer. NOTE: If you amend the number of
-  servers then you will have to add these host IPs (just add one to the existing addresses - ie: 10.0.0.13 for
-  the third backend server) to the load-balancer.conf file in the provision/roles/proxy/files folder. You will
-  see the existing servers mentioned there by IP in the 'upstream backend' section.
+  web servers, limited only by the resources available on your own computer. The system automatically creates
+  a load-balancer config file with all the IP addresses of the deployed web servers.
 - Each iteration of the webserver provisioning calls the same Ansible tasks in the corresponding role, defined
   in the provision/roles/webserver/tasks/main.yml file, including amending the default configuration,  installing
   PHP and copying the index.php file to the /usr/share/nginx/html folder.
